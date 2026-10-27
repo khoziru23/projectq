@@ -1,9 +1,6 @@
 # Penghapus Metadata Video — Versi Android (APK)
 
-[![Build APK](https://github.com/USERNAME/REPO/actions/workflows/build-apk.yml/badge.svg)](https://github.com/USERNAME/REPO/actions/workflows/build-apk.yml)
-
-> Ganti `USERNAME/REPO` pada URL badge di atas dengan nama pengguna dan
-> repository GitHub Anda (mis. `khoziru/video-metadata-cleaner`).
+[![Build APK](https://github.com/khoziru/test/actions/workflows/build-apk.yml/badge.svg)](https://github.com/khoziru/test/actions/workflows/build-apk.yml)
 
 Versi Android dari aplikasi, dibuat dengan **Kivy** dan di-build menjadi APK
 menggunakan **Buildozer**. Logika pembersih memakai kembali modul Python murni
