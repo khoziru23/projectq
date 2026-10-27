@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Buildozer / Android build artifacts
+android/.buildozer/
+android/bin/
+.buildozer/
+*.apk
+*.aab
+
+# Output video hasil pembersihan
+*_clean.mp4
+*_clean.mov
+*_clean.m4v
+*_clean.webm
+*_clean.mkv
+
+# File video besar (jangan di-commit)
+*.mp4
+*.mov
+*.mkv
+*.webm
+
+# OS
+.DS_Store
+Thumbs.db
