@@ -1,5 +1,10 @@
 # Penghapus Metadata Video
 
+[![Build APK](https://github.com/USERNAME/REPO/actions/workflows/build-apk.yml/badge.svg)](https://github.com/USERNAME/REPO/actions/workflows/build-apk.yml)
+
+> Ganti `USERNAME/REPO` pada URL badge di atas dengan nama pengguna dan
+> repository GitHub Anda. Badge menampilkan status build APK Android terbaru.
+
 Aplikasi GUI sederhana untuk menghapus metadata dari file video.
 Dibuat dengan Python (tkinter) — **tanpa perlu instalasi library tambahan**.
 
