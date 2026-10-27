@@ -24,7 +24,21 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Cache Buildozer global
+      - name: Pasang prasyarat sistem
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            git zip unzip openjdk-17-jdk \
+            autoconf libtool pkg-config \
+            zlib1g-dev libncurses-dev libffi-dev libssl-dev \
+            build-essential ccache libltdl-dev
+
+      - name: Pasang Buildozer & Cython
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade buildozer cython==0.29.36
+
+      - name: Cache Buildozer (SDK/NDK & build)
         uses: actions/cache@v4
         with:
           path: |
@@ -34,23 +48,28 @@ jobs:
           restore-keys: |
             buildozer-${{ runner.os }}-
 
-      - name: Build APK (Buildozer)
-        uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
-        with:
-          command: buildozer android debug
-          workdir: android
-          buildozer_version: stable
+      - name: Build APK debug
+        working-directory: android
+        run: |
+          export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+          buildozer -v android debug
+
+      - name: Temukan path APK
+        id: find_apk
+        run: |
+          APK=$(find android/bin -name "*.apk" | head -n 1)
+          echo "Menemukan APK: $APK"
+          echo "apk_path=$APK" >> "$GITHUB_OUTPUT"
 
       - name: Unggah APK sebagai artifact
         uses: actions/upload-artifact@v4
         with:
           name: metadatacleaner-debug-apk
-          path: ${{ steps.buildozer.outputs.filename }}
+          path: ${{ steps.find_apk.outputs.apk_path }}
           if-no-files-found: error
 
       - name: Lampirkan APK ke Release (hanya saat push tag v*)
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ steps.buildozer.outputs.filename }}
+          files: ${{ steps.find_apk.outputs.apk_path }}

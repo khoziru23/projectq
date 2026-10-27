@@ -178,8 +178,12 @@ class RootLayout(BoxLayout):
                 f"File hasil:\n{out}"
             )
             self._popup("Metadata Sebelum & Sesudah", report)
-            # Segarkan daftar file agar file _clean muncul.
-            self.chooser._update_files()
+            # Segarkan daftar file agar file _clean muncul (cara aman lintas versi Kivy).
+            try:
+                self.chooser._update_files()
+            except Exception:  # noqa: BLE001
+                # Fallback: picu ulang pemuatan dengan menyetel ulang path.
+                self.chooser.path = self.chooser.path
         except Exception as e:  # noqa: BLE001
             self.status.text = "Gagal."
             self._popup("Gagal", f"{name}:\n{e}")
