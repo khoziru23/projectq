@@ -1,6 +1,6 @@
 # Penghapus Metadata Video
 
-[![Build APK](https://github.com/khoziru/test/actions/workflows/build-apk.yml/badge.svg)](https://github.com/khoziru/test/actions/workflows/build-apk.yml)
+[![Build APK](https://github.com/khoziru23/projectq/actions/workflows/build-apk.yml/badge.svg)](https://github.com/khoziru23/projectq/actions/workflows/build-apk.yml)
 
 Aplikasi GUI sederhana untuk menghapus metadata dari file video.
 Dibuat dengan Python (tkinter) — **tanpa perlu instalasi library tambahan**.
